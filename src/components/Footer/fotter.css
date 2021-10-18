@@ -1,0 +1,9 @@
+.footer {
+    background-color: #282c34;
+    height: 50px;
+    width: 100%;
+    color: rgb(228, 226, 226);
+    display: flex;
+    flex-direction: row-reverse ;
+ 
+}
