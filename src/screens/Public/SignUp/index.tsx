@@ -1,8 +1,9 @@
 import { FC, FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Logo from '../../../assets/wispro.png';
 import { Row, Card, Form, InputGroup, Button, Col, Container } from 'react-bootstrap';
-import { user } from '../../../services/api/users'
+import { useAuth } from '../../../hooks';
+import Logo from '../../../assets/wispro.png';
+import { user } from '../../../services/api/users';
 import '../style.css'
 
 const SignUp: FC = () => {
@@ -11,6 +12,7 @@ const SignUp: FC = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const { register, authMsgError } = useAuth()
     const history = useHistory();
 
     const createUser = async () => {
@@ -21,6 +23,13 @@ const SignUp: FC = () => {
         e.preventDefault();
         createUser();
         history.push('/signin');
+
+        register(fullName, email, password)
+            .then(() => {
+                setFullName('')
+                setEmail('')
+                setPassword('')
+            })
     }
 
 
@@ -87,9 +96,9 @@ const SignUp: FC = () => {
                                             />
                                         </InputGroup>
                                     </Form.Group>
-                                    {/* {
-                                            authMsgError != null ? (<div className="alert alert-danger p-2 m-2" role="alert"> {authMsgError} </div>) : (<span></span>)
-                                        } */}
+                                    {
+                                        authMsgError != null ? (<div className="alert alert-danger p-2 m-2" role="alert"> {authMsgError} </div>) : (<span></span>)
+                                    }
                                     <Form.Group className="text-center">
                                         <Button className="btn-color" type="submit">
                                             Sign In

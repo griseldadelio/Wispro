@@ -27,7 +27,7 @@ const TableUsers: FC<Props> = ({ data, handleClickDelete }) => {
                         <PencilFill />
                     </Button>
                     <Modal show={show} onHide={handleClose}>
-
+                        {/* <ModalForm {id} /> */}
                         <Modal.Footer>
                             <Button variant="secondary" onClick={handleClose}>
                                 Close

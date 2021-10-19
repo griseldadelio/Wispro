@@ -1,20 +1,15 @@
 import { FC, FormEvent, useState, useEffect } from 'react';
-import { useHistory, useParams, RouteComponentProps } from 'react-router-dom';
+import { useHistory, RouteComponentProps } from 'react-router-dom';
 import { Modal, Form, InputGroup } from 'react-bootstrap';
 import { user } from '../../services/api/users'
-
-type UserId = {
-    id: string
-}
 
 const ModalForm: FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
     const [newUser, setNewUser] = useState('');
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('')
+    const [password, setPassword] = useState('');
     const history = useHistory();
-
-    let { id } = useParams<UserId>();
+    const id = match.params.id;
 
     const updateUser = () => {
         user.patch(id, { newUser, fullName, email, password })

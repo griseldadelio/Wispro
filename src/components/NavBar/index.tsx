@@ -1,8 +1,11 @@
 import { Nav, Navbar, Container } from 'react-bootstrap';
 import { PersonXFill } from 'react-bootstrap-icons';
+import { useAuth } from '../../hooks';
 import Logo from '../../assets/wispro.png';
 
 const NavBar = () => {
+    const { logout } = useAuth()
+
     return (
         <Navbar collapseOnSelect expand="lg">
             <Container>
@@ -21,8 +24,8 @@ const NavBar = () => {
                         <Nav.Link href="/about">About Test</Nav.Link>
                         <Nav.Link href="/table">Table Users</Nav.Link>
                         <Nav.Link href="/charts">Charts</Nav.Link>
-                        <Nav.Link href="/charts" >
-                            <PersonXFill className='mb-1' />
+                        <Nav.Link href="/" >
+                            <PersonXFill className='mb-1' onClick={logout} />
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>

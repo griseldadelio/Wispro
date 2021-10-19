@@ -1,13 +1,26 @@
-import { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { FC, FormEvent, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import Logo from '../../../assets/wispro.png';
 import { Row, Card, Form, InputGroup, Button, Col, Container } from 'react-bootstrap';
+import { useAuth } from '../../../hooks';
 import '../style.css'
 
 
 const SignIn: FC = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const { login, authMsgError } = useAuth();
+    const history = useHistory();
+
+    const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        login(email, password)
+            .then(() => {
+                setEmail('')
+                setPassword('')
+            })
+        history.push('/');
+    };
 
     return (
         <div className='container-log'>
@@ -28,7 +41,7 @@ const SignIn: FC = () => {
                                         Enter your email and password to access.
                                     </Card.Text>
                                 </Card.Title>
-                                <Form>
+                                <Form onSubmit={handleOnSubmit}>
                                     <Form.Group>
                                         <Form.Label>Email</Form.Label>
                                         <Form.Control
@@ -47,19 +60,18 @@ const SignIn: FC = () => {
                                                 type="password"
                                                 id="password"
                                                 placeholder="Enter your password"
-                                                value={password} onChange={(e) => setPassword(e.target.value)}
+                                                value={password}
+                                                onChange={(e) => setPassword(e.target.value)}
                                             />
                                         </InputGroup>
                                     </Form.Group>
-                                    {/* {
-                                            authMsgError != null ? (<div className="alert alert-danger p-2 m-2" role="alert"> {authMsgError} </div>) : (<span></span>)
-                                        } */}
+                                    {
+                                        authMsgError != null ? (<div className="alert alert-danger p-2 m-2" role="alert"> {authMsgError} </div>) : (<span></span>)
+                                    }
                                     <Form.Group className="text-center">
-                                        <Link to={'/'}>
-                                            <Button className="btn-color" type="submit">
-                                                Sign In
-                                            </Button>
-                                        </Link>
+                                        <Button className="btn-color" type="submit">
+                                            Sign In
+                                        </Button>
                                     </Form.Group>
                                     <div className="text-center mt-3">
                                         <p className="text-muted">Don't have an account?
