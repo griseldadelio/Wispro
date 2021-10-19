@@ -1,17 +1,16 @@
-import { Home } from ''
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { Home, SignIn, SignUp, List } from './screens'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <Router>
       <Switch>
-        <Route path="/" component={home} />
+        <Route path='/signup' component={SignUp} />
+        <Route path='/signin' component={SignIn} />
+        <Route path='/list' component={List} />
+        <Route path="/" component={Home} />
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 }
 
