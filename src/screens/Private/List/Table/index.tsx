@@ -1,19 +1,14 @@
-import { FC, useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { FC } from 'react';
 import { PencilFill, TrashFill } from 'react-bootstrap-icons';
-import { ModalForm } from '../../../../components';
 import { UserType } from '../../../../types';
 
 type Props = {
     data: UserType
-    handleClickDelete: (id: string) => void,
+    handleClickDelete: (id: string) => void;
+    handleClickEdit: (id: string) => void,
 }
 
-const TableUsers: FC<Props> = ({ data, handleClickDelete }) => {
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
+const Row: FC<Props> = ({ data, handleClickDelete, handleClickEdit }) => {
     const { fullName, newUser, email, id } = data
 
     return (
@@ -23,20 +18,7 @@ const TableUsers: FC<Props> = ({ data, handleClickDelete }) => {
                 <td>{fullName}</td>
                 <td>{email}</td>
                 <td className="text-center">
-                    <Button variant="primary" onClick={handleShow}>
-                        <PencilFill />
-                    </Button>
-                    <Modal show={show} onHide={handleClose}>
-                        {/* <ModalForm {id} /> */}
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
-                                Close
-                            </Button>
-                            <Button variant="primary" onClick={handleClose}>
-                                Save Changes
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
+                    <PencilFill onClick={() => handleClickEdit(id)} />
                 </td>
                 <td className="text-center">
                     <TrashFill onClick={() => handleClickDelete(id)} />
@@ -45,4 +27,4 @@ const TableUsers: FC<Props> = ({ data, handleClickDelete }) => {
         </tbody>
     )
 }
-export { TableUsers }
+export { Row }

@@ -22,14 +22,14 @@ const SignUp: FC = () => {
     const handleSubmit = (e: FormEvent<HTMLElement>) => {
         e.preventDefault();
         createUser();
-        history.push('/signin');
-
         register(fullName, email, password)
             .then(() => {
                 setFullName('')
                 setEmail('')
                 setPassword('')
             })
+
+        history.push('/signin');
     }
 
 

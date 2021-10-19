@@ -24,7 +24,7 @@ const useAuth = () => {
             })
     }
 
-    const register = async (email: string, password: string, fullName: string) => {
+    const register = async (fullName: string, email: string, password: string) => {
         return await firebaseAuth.auth().createUserWithEmailAndPassword(email, password)
             .then((response: firebaseAuth.auth.UserCredential) => {
                 setUser(response.user);

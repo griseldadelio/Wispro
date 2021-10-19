@@ -22,7 +22,7 @@ const NavBar = () => {
                 <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                     <Nav className="me-auto">
                         <Nav.Link href="/about">About Test</Nav.Link>
-                        <Nav.Link href="/table">Table Users</Nav.Link>
+                        <Nav.Link href="/List">Table Users</Nav.Link>
                         <Nav.Link href="/charts">Charts</Nav.Link>
                         <Nav.Link href="/" >
                             <PersonXFill className='mb-1' onClick={logout} />

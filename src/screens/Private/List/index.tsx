@@ -1,12 +1,21 @@
 import { FC, useState, useEffect } from 'react';
-import { NavBar, Footer } from '../../../components'
-import { TableUsers } from './Table';
+import { useHistory } from 'react-router-dom';
+import { NavBar, Footer, ModalForm } from '../../../components'
+import { Row } from './Table';
 import { Table, Container } from 'react-bootstrap';
 import { UserType } from '../../../types';
 import { user } from '../../../services/api/users'
 
 const List: FC = () => {
+    // const [newUser, setNewUser] = useState('')
+    // const [fullName, setFullName] = useState('')
+    // const [email, setEmail] = useState('')
+    // const [password, setPassword] = useState('')
+
+
     const [users, setUsers] = useState<UserType[]>();
+    const [selectUser, setSelectUser] = useState('')
+    const history = useHistory();
 
     const getUser = () => {
         user.get().then(response => {
@@ -21,6 +30,23 @@ const List: FC = () => {
         user.deleteUser(id)
             .then(() => getUser())
     }
+
+    // const editUser = () => {
+    //     user.patch(id, { newUser, fullName, email, password })
+    //     history.push('/users/');
+    // }
+
+    // useEffect(() => {
+    //     if (id) {
+    //         user.getId(id)
+    //             .then(response => {
+    //                 setNewUser(response.newUser);
+    //                 setFullName(response.fullName);
+    //                 setEmail(response.email);
+    //                 setPassword(response.password)
+    //             })
+    //     }
+    // }, [])
 
     return (
         <>
@@ -37,9 +63,10 @@ const List: FC = () => {
                         </tr>
                     </thead>
                     {users && users.map((user: UserType) => (
-                        <TableUsers key={user.id} data={user} handleClickDelete={deleteUser} />
+                        <Row key={user.id} data={user} handleClickDelete={deleteUser} handleClickEdit={setSelectUser} />
                     ))}
                 </Table>
+                <ModalForm />
             </Container>
             <Footer />
         </>
