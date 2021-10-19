@@ -29,6 +29,7 @@ const List: FC = () => {
                 <Table responsive='md' className='striped bordered hover p-5'>
                     <thead className='bg-light'>
                         <tr>
+                            <th>User</th>
                             <th>FullName</th>
                             <th>Email</th>
                             <th className="text-center">Edit</th>

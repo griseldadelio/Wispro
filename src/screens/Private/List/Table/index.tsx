@@ -1,7 +1,8 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
 import { PencilFill, TrashFill } from 'react-bootstrap-icons';
+import { ModalForm } from '../../../../components';
 import { UserType } from '../../../../types';
-import { Link } from 'react-router-dom'
 
 type Props = {
     data: UserType
@@ -9,16 +10,33 @@ type Props = {
 }
 
 const TableUsers: FC<Props> = ({ data, handleClickDelete }) => {
-    const { user, email, id } = data
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const { fullName, newUser, email, id } = data
+
     return (
         <tbody>
             <tr>
-                <td>{user}</td>
+                <td>{newUser}</td>
+                <td>{fullName}</td>
                 <td>{email}</td>
                 <td className="text-center">
-                    <Link to={`/users/edit/${id}`} className="mx-2">
+                    <Button variant="primary" onClick={handleShow}>
                         <PencilFill />
-                    </Link>
+                    </Button>
+                    <Modal show={show} onHide={handleClose}>
+
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Close
+                            </Button>
+                            <Button variant="primary" onClick={handleClose}>
+                                Save Changes
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
                 </td>
                 <td className="text-center">
                     <TrashFill onClick={() => handleClickDelete(id)} />

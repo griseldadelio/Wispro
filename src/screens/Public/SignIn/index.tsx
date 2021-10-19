@@ -4,6 +4,7 @@ import Logo from '../../../assets/wispro.png';
 import { Row, Card, Form, InputGroup, Button, Col, Container } from 'react-bootstrap';
 import '../style.css'
 
+
 const SignIn: FC = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -35,7 +36,8 @@ const SignIn: FC = () => {
                                             type="email"
                                             id="email"
                                             placeholder="Enter your email"
-                                            value={email} onChange={(e) => setEmail(e.target.value)}
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mt-3">
@@ -70,7 +72,7 @@ const SignIn: FC = () => {
                     </Col>
                 </Row>
             </Container>
-        </div>
+        </div >
 
     )
 }

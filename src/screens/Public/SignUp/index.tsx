@@ -1,12 +1,28 @@
-import { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { FC, FormEvent, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Logo from '../../../assets/wispro.png';
 import { Row, Card, Form, InputGroup, Button, Col, Container } from 'react-bootstrap';
+import { user } from '../../../services/api/users'
 import '../style.css'
 
 const SignUp: FC = () => {
+    const [newUser, setNewUser] = useState('')
+    const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const history = useHistory();
+
+    const createUser = async () => {
+        await user.post({ newUser, fullName, email, password });
+    }
+
+    const handleSubmit = (e: FormEvent<HTMLElement>) => {
+        e.preventDefault();
+        createUser();
+        history.push('/signin');
+    }
+
 
     return (
         <div className='container-log'>
@@ -24,7 +40,7 @@ const SignUp: FC = () => {
                                         Sign Up
                                     </h3>
                                 </Card.Title>
-                                <Form>
+                                <Form onSubmit={handleSubmit}>
                                     <Form.Group>
                                         <Form.Label>Full Name</Form.Label>
                                         <Form.Control
@@ -32,7 +48,19 @@ const SignUp: FC = () => {
                                             type="text"
                                             id="fullName"
                                             placeholder="Ex: Philip Json"
-                                            value={email} onChange={(e) => setEmail(e.target.value)}
+                                            value={fullName}
+                                            onChange={(e) => setFullName(e.target.value)}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Label>User</Form.Label>
+                                        <Form.Control
+                                            required
+                                            type="text"
+                                            id="user"
+                                            placeholder="Ex: Philip.J"
+                                            value={newUser}
+                                            onChange={(e) => setNewUser(e.target.value)}
                                         />
                                     </Form.Group>
                                     <Form.Group>
@@ -42,7 +70,8 @@ const SignUp: FC = () => {
                                             type="email"
                                             id="email"
                                             placeholder="Ex:philipJson@gmail.com"
-                                            value={email} onChange={(e) => setEmail(e.target.value)}
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
                                         />
                                     </Form.Group>
                                     <Form.Group className="mt-3">
@@ -52,7 +81,9 @@ const SignUp: FC = () => {
                                                 type="password"
                                                 id="password"
                                                 placeholder="Enter your password"
-                                                value={password} onChange={(e) => setPassword(e.target.value)}
+                                                className='form-control'
+                                                value={password}
+                                                onChange={(e) => setPassword(e.target.value)}
                                             />
                                         </InputGroup>
                                     </Form.Group>
@@ -60,11 +91,9 @@ const SignUp: FC = () => {
                                             authMsgError != null ? (<div className="alert alert-danger p-2 m-2" role="alert"> {authMsgError} </div>) : (<span></span>)
                                         } */}
                                     <Form.Group className="text-center">
-                                        <Link to={'/signin'}>
-                                            <Button className="btn-color" type="submit">
-                                                Sign In
-                                            </Button>
-                                        </Link>
+                                        <Button className="btn-color" type="submit">
+                                            Sign In
+                                        </Button>
                                     </Form.Group>
                                 </Form>
                             </Card.Body>

@@ -1,15 +1,15 @@
 import { api } from './api';
 import { objectToArray } from '../helper/objectToArray';
 
-type AddUserPayLoad = { user: string, email: string, password: string }
+type AddUserPayLoad = { newUser: string, fullName: string, email: string, password: string }
 
-// const post = async (user: AddUserPayLoad) => {
-//     await api({
-//         method: 'post',
-//         url: '/users.json',
-//         data: user
-//     });
-// }
+const post = async (user: AddUserPayLoad) => {
+    await api({
+        method: 'post',
+        url: '/users.json',
+        data: user
+    });
+}
 
 const getId = async (id: string) => {
     const data = await api({
@@ -44,4 +44,4 @@ const deleteUser = async (id: string) => {
     })
 }
 
-export const user = { get, patch, getId, deleteUser };
+export const user = { post, get, patch, getId, deleteUser };
