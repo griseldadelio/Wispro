@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 
 const Home = () => {
     return (
-        <div>
+        <>
             <NavBar />
             <Container className='my-5'>
                 <span>
@@ -35,7 +35,7 @@ const Home = () => {
                 </span>
             </Container>
             <Footer />
-        </div>
+        </>
     );
 };
 

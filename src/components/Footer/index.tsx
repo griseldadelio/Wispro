@@ -2,7 +2,7 @@ import './footer.css';
 
 const Footer = () => {
     return (
-        <footer className="footer mt-5 p-5">
+        <footer className="footer">
             <h6> De Lio Griselda</h6>
         </footer>
     )

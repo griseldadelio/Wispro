@@ -24,7 +24,7 @@ const NavBar = () => {
                         <Nav.Link href="/about">About Test</Nav.Link>
                         <Nav.Link href="/List">Table Users</Nav.Link>
                         <Nav.Link href="/charts">Charts</Nav.Link>
-                        <Nav.Link href="/" >
+                        <Nav.Link href="/signin" >
                             <PersonXFill className='mb-1' onClick={logout} />
                         </Nav.Link>
                     </Nav>

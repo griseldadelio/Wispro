@@ -1,27 +1,45 @@
-import { FC, useState } from 'react';
-import { Modal, Form, InputGroup, Button } from 'react-bootstrap';
+import { Dispatch, FC, FormEvent, SetStateAction, useState } from "react";
+import { Modal, Form, InputGroup, Button } from "react-bootstrap";
+import { UserType } from "../../types";
 
-const ModalForm: FC = () => {
-    const [newUser, setNewUser] = useState('');
-    const [fullName, setFullName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+interface Props {
+    show: boolean;
+    onModalClose: Dispatch<SetStateAction<boolean>>;
+    selectedUser: UserType;
+    handleSubmit: (e: FormEvent<HTMLElement>, user: UserType) => void;
+}
+
+const ModalUserUpdate: FC<Props> = ({ show, selectedUser, onModalClose, handleSubmit }) => {
+    const [newUser, setNewUser] = useState(selectedUser?.newUser || "");
+    const [fullName, setFullName] = useState(selectedUser?.fullName || "");
+    const [email, setEmail] = useState(selectedUser?.email || "");
+    const [password, setPassword] = useState(selectedUser?.password || "");
 
     return (
         <>
-            <Modal.Dialog>
+            <Modal show={show} onHide={() => onModalClose(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Edit User</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
+                    <Form
+                        onSubmit={(e) =>
+                            handleSubmit(e, {
+                                id: selectedUser.id,
+                                newUser,
+                                fullName,
+                                email,
+                                password,
+                            })
+                        }
+                    >
                         <Form.Group>
                             <Form.Label>Full Name</Form.Label>
                             <Form.Control
                                 required
                                 type="text"
                                 id="fullName"
-                                placeholder="Ex: Philip Json"
+                                name="fullName"
                                 value={fullName}
                                 onChange={(e) => setFullName(e.target.value)}
                             />
@@ -32,7 +50,6 @@ const ModalForm: FC = () => {
                                 required
                                 type="text"
                                 id="user"
-                                placeholder="Ex: Philip.J"
                                 value={newUser}
                                 onChange={(e) => setNewUser(e.target.value)}
                             />
@@ -43,7 +60,6 @@ const ModalForm: FC = () => {
                                 required
                                 type="email"
                                 id="email"
-                                placeholder="Ex:philipJson@gmail.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
@@ -54,22 +70,24 @@ const ModalForm: FC = () => {
                                 <Form.Control
                                     type="password"
                                     id="password"
-                                    placeholder="Enter your password"
-                                    className='form-control'
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                             </InputGroup>
                         </Form.Group>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={() => onModalClose(false)}>
+                                Close
+                            </Button>
+                            <Button variant="primary" type="submit">
+                                Save changes
+                            </Button>
+                        </Modal.Footer>
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary">Close</Button>
-                    <Button variant="primary">Save changes</Button>
-                </Modal.Footer>
-            </Modal.Dialog>
+            </Modal>
         </>
     );
-}
+};
 
-export { ModalForm }
+export { ModalUserUpdate };

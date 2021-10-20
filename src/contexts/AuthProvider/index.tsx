@@ -30,6 +30,7 @@ const AuthProvider: FC = ({ children }) => {
         })
     }, [setIsAuthenticated, setUser]);
 
+
     return (
         < AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser }}>
             {children}
