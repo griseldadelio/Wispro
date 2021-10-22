@@ -15,20 +15,26 @@ const SignUp: FC = () => {
     const { register, authMsgError } = useAuth()
     const history = useHistory();
 
+
+    // Fecha
+    const currentDate = new Date();
+    const currentDayOfMonth = currentDate.getDate();
+    const date = currentDayOfMonth
+
     const createUser = async () => {
-        await user.post({ newUser, fullName, email, password });
+        await user.post({ newUser, fullName, email, password, date });
     }
 
     const handleSubmit = (e: FormEvent<HTMLElement>) => {
         e.preventDefault();
-        createUser();
+
         register(fullName, email, password)
             .then(() => {
                 setFullName('')
                 setEmail('')
                 setPassword('')
             })
-
+        createUser();
         history.push('/signin');
     }
 

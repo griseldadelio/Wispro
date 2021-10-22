@@ -1,5 +1,5 @@
 import axios from 'axios';
 const api = axios.create({
-    baseURL: 'https://wispro-32fb0-default-rtdb.firebaseio.com/',
+    baseURL: process.env.REACT_APP_FIREBASE_DATABASE,
 });
 export { api };

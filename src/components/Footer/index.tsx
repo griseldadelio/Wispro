@@ -1,9 +1,9 @@
-import './footer.css';
+import { FC } from 'react'
 
-const Footer = () => {
+const Footer: FC = () => {
     return (
-        <footer className="footer">
-            <h6> De Lio Griselda</h6>
+        <footer>
+            <h6 className='m-4'> De Lio Griselda</h6>
         </footer>
     )
 }

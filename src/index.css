@@ -1,0 +1,15 @@
+body{
+    margin: 0;  
+  }
+  
+footer {
+    min-height: 30px;
+    background-color:  #292c2f;
+    border-top: 1px solid rgba(50, 50, 50, 0.3);
+    width: 100%;
+    position: fixed;
+    bottom: 0;  
+    text-align: left;
+    font: bold 16px sans-serif; 
+    color: #fff;         
+  }

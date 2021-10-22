@@ -2,8 +2,9 @@ import { api } from './api';
 import { objectToArray } from '../helper/objectToArray';
 
 type AddUserPayLoad = { newUser: string, fullName: string, email: string, password: string }
+type AddUser = { newUser: string, fullName: string, email: string, password: string, date: number }
 
-const post = async (user: AddUserPayLoad) => {
+const post = async (user: AddUser) => {
     await api({
         method: 'post',
         url: '/users.json',

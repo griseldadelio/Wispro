@@ -29,7 +29,7 @@ const ModalUserUpdate: FC<Props> = ({ show, selectedUser, onModalClose, handleSu
                                 newUser,
                                 fullName,
                                 email,
-                                password,
+                                password
                             })
                         }
                     >
