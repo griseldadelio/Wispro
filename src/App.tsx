@@ -1,18 +1,13 @@
-import { Home } from ''
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { AuthProvider } from './contexts';
+import { AuthRoute } from './screens'
 
 const App = () => {
+
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" component={home} />
-      </Switch>
-    </BrowserRouter>
-  );
-}
+    <AuthProvider>
+      <AuthRoute />
+    </AuthProvider>
+  )
+};
 
 export default App;
