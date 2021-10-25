@@ -35,7 +35,7 @@ const SignUp: FC = () => {
                 setPassword('')
             })
         createUser();
-        history.push('/signin');
+        history.push('/');
     }
 
 
