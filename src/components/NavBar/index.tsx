@@ -21,8 +21,8 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                     <Nav className="me-auto">
-                        <Nav.Link href="/about">About Test</Nav.Link>
-                        <Nav.Link href="/List">Table Users</Nav.Link>
+                        <Nav.Link href="/home">About Test</Nav.Link>
+                        <Nav.Link href="/list">Table Users</Nav.Link>
                         <Nav.Link href="/charts">Charts</Nav.Link>
                         <Nav.Link href="/signin" >
                             <PersonXFill className='mb-1' onClick={logout} />

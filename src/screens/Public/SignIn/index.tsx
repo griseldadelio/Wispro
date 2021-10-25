@@ -19,7 +19,7 @@ const SignIn: FC = () => {
                 setEmail('')
                 setPassword('')
             })
-        history.push('/');
+        history.push('/home');
     };
 
     return (
