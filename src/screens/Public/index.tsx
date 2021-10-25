@@ -9,7 +9,7 @@ export const Public: FC = () => {
         <Router>
             <Switch>
                 <Route path='/signup' component={SignUp} />
-                <Route path='/signin' component={SignIn} />
+                <Route path='/' component={SignIn} />
             </Switch>
         </Router>
     )

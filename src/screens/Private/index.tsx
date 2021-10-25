@@ -10,7 +10,7 @@ export const Private: FC = () => {
             <Switch>
                 <Route path='/charts' component={LoginCharts} />
                 <Route path='/list' component={List} />
-                <Route path='/' component={Home} />
+                <Route path='/home' component={Home} />
             </Switch>
         </Router>
     )
